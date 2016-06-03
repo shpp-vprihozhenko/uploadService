@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="userApp">
+<head>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>-->
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/user.js"></script>
+  <script src="js/clipboard.js"></script>
+
+  <style>
+    .filelink {
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+<body>
+<div ng-controller="userController as user">
+  <h1>Upload service</h1>
+  <h1>Hello {{user.getName()}}!</h1>
+  <form ng-submit="user.singInOrRegistry()">
+    <label>Your name:</label>
+    <input type="text" ng-model="user.name"  size="30" id="uName"
+           placeholder="enter username">
+    <label>Your password:</label>
+    <input type="text" ng-model="user.password"  size="30"
+           placeholder="enter password">
+    <input class="btn-primary" type="submit" value="Sign In/Registry">
+  </form>
+  <br>
+  <div id="upload"></div>
+  <br>
+  <div>
+    <ul>
+      <li ng-repeat="filelink in user.arUploadedFiles">
+          <span class="filelink" ng-click="user.copyToCB(filelink)">{{filelink}}</span>
+      </li>
+    </ul>
+
+  </div>
+</div>
+</body>
+</html>
